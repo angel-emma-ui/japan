@@ -12,7 +12,7 @@
             --bg-color: #f4f7f6;
             --primary-pink: #c89696;
             --accent-green: #a5b59a;
-            --accent-blue: #8fa9b5;
+            --accent-blue: #8fa9b5; /* 換算與地鐵共用此色 */
             --glass-bg: rgba(255, 255, 255, 0.7);
             --text-main: #545e62;
             --sidebar-width: 280px;
@@ -52,7 +52,7 @@
         .page-container { height: 100vh; padding: 100px 15px 120px 15px; box-sizing: border-box; display: none; overflow-y: auto; -webkit-overflow-scrolling: touch; }
         .page-container.active { display: block; animation: slideUp 0.5s ease; }
 
-        /* 天氣區塊修復 */
+        /* 天氣三欄 */
         .weather-banner { 
             background: linear-gradient(135deg, rgba(253, 242, 242, 0.6) 0%, rgba(232, 240, 235, 0.5) 100%); 
             border-radius: 25px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; gap: 10px;
@@ -63,12 +63,14 @@
         
         .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-radius: 25px; padding: 20px; box-shadow: 10px 10px 30px rgba(0,0,0,0.03); margin-bottom: 20px; border-top: 6px solid var(--accent-green); }
 
+        /* RWD 佈局切換 */
         .home-dual-row { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
         @media (min-width: 500px) {
             .home-dual-row { display: grid; grid-template-columns: 1fr 1fr; }
         }
         .home-dual-row .glass-card { margin-bottom: 0; }
 
+        /* 航班資訊樣式優化 */
         .flight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .flight-box { background: rgba(255,255,255,0.5); padding: 15px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.3); text-align: left; }
         .flight-title { font-weight: 700; color: var(--primary-pink); margin-bottom: 8px; font-size: 1.1rem; border-bottom: 1.5px solid rgba(200, 150, 150, 0.2); padding-bottom: 5px; }
@@ -83,6 +85,7 @@
         .list-card { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.6); padding: 18px; border-radius: 20px; margin-bottom: 12px; border-left: 6px solid var(--accent-green); }
         .del-btn { color: #ff9a9a; border: none; background: none; font-weight: 700; font-size: 1.4rem; cursor: pointer; padding: 5px; }
 
+        /* 收納層 */
         .transport-accordion, .home-accordion, .itinerary-accordion { margin-bottom: 15px; background: rgba(255, 255, 255, 0.8); border-radius: 25px; overflow: hidden; border: 1px solid #eee; }
         .accordion-header { padding: 22px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1.15rem; }
         .accordion-header:hover { background: #fdf2f2; }
@@ -94,7 +97,7 @@
         .btn-routemap { background: var(--accent-green); }
         .btn-airport { background: #6b8fb3; }
 
-        .metro-embed-container { border-radius: 20px; overflow: hidden; border: 2px solid #4a90e2; margin-top: 10px; }
+        .metro-embed-container { border-radius: 20px; overflow: hidden; border: 2px solid var(--accent-blue); margin-top: 10px; }
         .metro-embed-container iframe { width: 100%; height: 450px; border: none; }
         
         /* 匯率大字體 */
@@ -125,11 +128,11 @@
     <!-- 首頁 -->
     <div id="home" class="page-container active">
         <div style="text-align: center; margin-bottom: 25px;">
-            <h1 style="color: var(--primary-pink); margin: 0; font-size: 2.4rem; font-weight: 700;">Kansai 2026</h1>
+            <h1 style="color: var(--primary-pink); margin: 0; font-size: 2.2rem; font-weight: 700;">Kansai 2026</h1>
             <p id="currentDate" style="color: #abb6ba; margin-top: 5px; font-size: 1.1rem;"></p>
         </div>
 
-        <!-- 1. 天氣區塊 (已修復體感溫度與對齊) -->
+        <!-- 1. 天氣區塊 (體感溫度已復原) -->
         <div class="weather-banner">
             <div class="w-col-left">
                 <p style="font-size: 2.8rem; font-weight: 700; color: var(--primary-pink); margin: 0;" id="tempMain">--°</p>
@@ -154,14 +157,14 @@
                     <div class="flight-box">
                         <div class="flight-title">🛫 GK 54</div>
                         <div class="flight-info-row"><span class="flight-label">日期:</span><span>4/11 (六)</span></div>
-                        <div class="flight-info-row"><span class="flight-label">時間:</span><span>18:20-22:00</span></div>
-                        <div class="flight-info-row"><span class="flight-label">航廈:</span><span>TPE T1-KIX T1</span></div>
+                        <div class="flight-info-row"><span class="flight-label">時間:</span><span>18:10 - 22:00</span></div>
+                        <div class="flight-info-row"><span class="flight-label">航廈:</span><span>TPE T1 - KIX T1</span></div>
                     </div>
                     <div class="flight-box">
                         <div class="flight-title">🛬 GK 57</div>
                         <div class="flight-info-row"><span class="flight-label">日期:</span><span>4/16 (四)</span></div>
-                        <div class="flight-info-row"><span class="flight-label">時間:</span><span>23:35-01:30</span></div>
-                        <div class="flight-info-row"><span class="flight-label">航廈:</span><span>KIX T1-TPE T1</span></div>
+                        <div class="flight-info-row"><span class="flight-label">時間:</span><span>23:35 - 01:30</span></div>
+                        <div class="flight-info-row"><span class="flight-label">航廈:</span><span>KIX T1 - TPE T1</span></div>
                     </div>
                 </div>
             </div>
@@ -170,14 +173,20 @@
         <!-- 3. 旅行小提醒 -->
         <div class="glass-card" style="border-top-color: var(--primary-pink);">
             <h4 style="margin-top: 0; color: var(--primary-pink); font-size: 1.2rem;">💡 旅行小提醒</h4>
-            <div class="input-group"><input type="text" id="memoInput" class="custom-input" placeholder="提醒旅伴什麼..."><button class="action-btn" onclick="addMemo()" style="width: auto;">新增</button></div>
+            <div class="input-group">
+                <input type="text" id="memoInput" class="custom-input" placeholder="提醒旅伴什麼...">
+                <button class="action-btn" onclick="addMemo()" style="width: auto;">新增</button>
+            </div>
             <ul id="memoList" style="padding:0; list-style:none; margin:0;"></ul>
         </div>
 
-        <!-- 4. 快捷景點搜尋 -->
+        <!-- 4. 快捷景點搜尋 (支援 Enter 鍵) -->
         <div class="glass-card" style="border-top-color: var(--accent-green);">
             <h4 style="margin-top: 0; color: var(--accent-green); font-size: 1.1rem;">📍 快捷景點搜尋</h4>
-            <div class="input-group"><input type="text" id="homeSearch" class="custom-input" placeholder="想去哪裡玩？"><button class="action-btn" style="width: auto;" onclick="homeSearchJump()">搜尋</button></div>
+            <div class="input-group">
+                <input type="text" id="homeSearch" class="custom-input" placeholder="想去哪裡玩？" onkeypress="handleSearch(event, 'homeSearch')">
+                <button class="action-btn" style="width: auto;" onclick="homeSearchJump()">搜尋</button>
+            </div>
         </div>
 
         <!-- 5. 記帳與匯率併排 -->
@@ -187,7 +196,7 @@
                 <input type="text" id="homeExpItem" class="custom-input" placeholder="項目" style="margin-bottom: 8px;">
                 <input type="number" id="homeExpAmount" class="custom-input" placeholder="金額 (¥)" style="margin-bottom: 8px;">
                 <select id="homeExpPayer" class="custom-input" style="margin-bottom: 12px;">
-                    <option value="過">我付的</option><option value="旅伴">旅伴付的</option>
+                    <option value="我">我付的</option><option value="旅伴">旅伴付的</option>
                 </select>
                 <button class="action-btn" style="background: var(--accent-green);" onclick="addExpenseHome(this)">紀錄</button>
             </div>
@@ -209,10 +218,10 @@
             </div>
         </div>
 
-        <!-- 6. 地鐵圖 -->
+        <!-- 6. 地鐵圖 (調整顏色與間距) -->
         <div style="margin-top: 60px;">
-            <div class="home-accordion" style="border-top: 6px solid #4a90e2; margin-bottom: 0;">
-                <div class="accordion-header" onclick="toggleAcc(this)" style="color: #4a90e2;">🚇 大阪 Metro 路線規劃 <span>▼</span></div>
+            <div class="home-accordion" style="border-top: 6px solid var(--accent-blue); margin-bottom: 0;">
+                <div class="accordion-header" onclick="toggleAcc(this)" style="color: var(--accent-blue);">🚇 大阪 Metro 路線規劃 <span>▼</span></div>
                 <div class="accordion-content">
                     <div class="metro-embed-container"><iframe src="https://metronine.osaka/tw/fullpage-course/" allowfullscreen></iframe></div>
                 </div>
@@ -220,50 +229,23 @@
         </div>
     </div>
 
-    <!-- 分頁 1: 每日行程 -->
+    <!-- 🌸 分頁 1: 每日行程 (完整規劃) -->
     <div id="itinerary" class="page-container">
         <h1 style="color:var(--primary-pink); margin-bottom:25px; font-size:2.5rem; font-weight:700;">每日行程</h1>
-        
         <div class="itinerary-accordion">
             <div class="accordion-header" onclick="toggleAcc(this)">📅 4/11 (六) Day 1 抵達 <span>▼</span></div>
-            <div class="accordion-content">
-                <ul>
-                    <li>18:10 桃園機場 GK 54 起飛</li>
-                    <li>21:40 抵達關西機場 T1</li>
-                    <li>辦理入境手續後搭乘南海電鐵 (Rapi:t) 前往難波/心齋橋地區入住休息。</li>
-                </ul>
-            </div>
+            <div class="accordion-content"><ul><li>18:10 桃園機場 GK 54 起飛</li><li>22:00 抵達關西機場 T1</li><li>搭乘南海電鐵前往大阪市區入住。</li></ul></div>
         </div>
-
         <div class="itinerary-accordion">
             <div class="accordion-header" onclick="toggleAcc(this)">📅 4/12 (日) Day 2 京都賞櫻 <span>▼</span></div>
-            <div class="accordion-content">
-                <ul>
-                    <li>蹴上傾斜鐵道：漫步在廢棄鐵道上的櫻花隧道。</li>
-                    <li>哲學之道：沿著小溪散步至銀閣寺，享受寧靜的櫻花氛圍。</li>
-                    <li>南禪寺 / 祇園一帶觀光，體驗京都歷史風情。</li>
-                </ul>
-            </div>
+            <div class="accordion-content"><ul><li>蹴上傾斜鐵道、哲學之道、銀閣寺。</li><li>祇園一帶漫步。</li></ul></div>
         </div>
-
-        <div class="itinerary-accordion">
-            <div class="accordion-header" onclick="toggleAcc(this)">📅 4/13 (一) Day 3 大阪探索 <span>▼</span></div>
-            <div class="accordion-content"><ul><li>大阪城公園：參觀天守閣與四周櫻花。</li><li>梅田大樓眺望：俯瞰大阪市區黃昏與夜景。</li></ul></div>
-        </div>
-
-        <div class="itinerary-accordion">
-            <div class="accordion-header" onclick="toggleAcc(this)">📅 4/14 (二) Day 4 奈良鹿境 <span>▼</span></div>
-            <div class="accordion-content"><ul><li>奈良公園與東大寺：與可愛的小鹿近距離接觸。</li><li>興福寺參拜。</li></ul></div>
-        </div>
-
-        <div class="itinerary-accordion">
-            <div class="accordion-header" onclick="toggleAcc(this)">📅 4/15 (三) Day 5 購物行程 <span>▼</span></div>
-            <div class="accordion-content"><ul><li>黑門市場品嚐在地海鮮。</li><li>心齋橋、道頓堀最後藥妝、服飾採買。</li></ul></div>
-        </div>
-
+        <div class="itinerary-accordion"><div class="accordion-header" onclick="toggleAcc(this)">📅 4/13 (一) Day 3 大阪探索 <span>▼</span></div><div class="accordion-content"><ul><li>大阪城、梅田展望台。</li></ul></div></div>
+        <div class="itinerary-accordion"><div class="accordion-header" onclick="toggleAcc(this)">📅 4/14 (二) Day 4 奈良鹿境 <span>▼</span></div><div class="accordion-content"><ul><li>奈良公園與東大寺。</li></ul></div></div>
+        <div class="itinerary-accordion"><div class="accordion-header" onclick="toggleAcc(this)">📅 4/15 (三) Day 5 購物 <span>▼</span></div><div class="accordion-content"><ul><li>心齋橋、道頓堀採買。</li></ul></div></div>
         <div class="itinerary-accordion" style="border-bottom: 1px solid #eee;">
             <div class="accordion-header" onclick="toggleAcc(this)">📅 4/16 (四) Day 6 歸途 <span>▼</span></div>
-            <div class="accordion-content"><ul><li>11:00 前飯店退房並寄存行李。</li><li>難波最後美食行程。</li><li>23:35 關西機場 GK 57 起飛 ➔ 01:30(+1) 抵達台北。</li></ul></div>
+            <div class="accordion-content"><ul><li>中午退房。</li><li>23:35 KIX T1 GK 57 起飛 ➔ 01:30(+1) 抵台北。</li></ul></div>
         </div>
     </div>
 
@@ -276,48 +258,55 @@
                 <input type="text" id="tabExpItem" class="custom-input" placeholder="項目">
                 <input type="number" id="tabExpAmount" class="custom-input" placeholder="金額 (¥)">
                 <select id="tabExpPayer" class="custom-input" style="flex: 0.5;"><option value="我">我</option><option value="旅伴">旅伴</option></select>
-                <button class="action-btn" style="width: auto;" onclick="addExpenseTab(this)">紀錄款項</button>
+                <button class="action-btn" style="width: auto;" onclick="addExpenseTab(this)">紀錄</button>
             </div>
         </div>
         <div class="glass-card settle-card"><h4 style="margin-top: 0; font-size: 1.2rem;">📊 結算彙整</h4><div id="settlementInfo">計算中...</div></div>
         <div id="expenseList" style="padding:0; margin-top:20px;"></div>
     </div>
 
-    <!-- 分頁 4: 交通工具 (完整內容) -->
+    <!-- 分頁 3: 景點搜尋 -->
+    <div id="map" class="page-container">
+        <h1 style="color:var(--primary-pink); margin-bottom:25px; font-size:2.5rem; font-weight:700;">景點搜尋</h1>
+        <div class="glass-card">
+            <div class="input-group">
+                <input type="text" id="mapSearch" class="custom-input" placeholder="搜尋目的地..." onkeypress="handleSearch(event, 'mapSearch')">
+                <button class="action-btn" style="width: auto;" onclick="mapsJump()">搜尋</button>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104996.63!2d135.41!3d34.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6553406e2e1%3A0x23779435411a1318!2z5pel5pys5aSn6Ziq!5e0!3m2!1szh-TW!2stw!4v1700000000000" width="100%" height="450" style="border:0; border-radius:25px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <!-- 分頁 4: 交通工具 (恢復簡介) -->
     <div id="transport" class="page-container">
         <h1 style="color:var(--primary-pink); margin-bottom:25px; font-size:2.5rem; font-weight:700;">交通工具</h1>
-        
-        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">✈️ 南海電鐵 (機場往返) <span>▼</span></div><div class="accordion-content">
+        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">✈️ 南海電鐵 (機場) <span>▼</span></div><div class="accordion-content">
             <div class="link-group">
                 <a href="https://kensaku.nankai.co.jp/tc/pc/N1" target="_blank" class="transport-btn btn-timetable">🕒 時刻表</a>
                 <a href="https://www.howto-osaka.com/tc/access-timetable/" target="_blank" class="transport-btn btn-airport">✈️ 機場發車</a>
                 <a href="https://www.nankai.co.jp/tc_railway/traffic/railmap.html" target="_blank" class="transport-btn btn-routemap">🗺️ 路線圖</a>
             </div>
-            <p>連接關西機場與大阪難波，是入境最快速、最熱門的選擇。</p>
+            <p>入境首選，連接關空與難波地區。</p>
         </div></div>
-
-        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🚇 大阪 Metro (市內交通) <span>▼</span></div><div class="accordion-content">
+        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🚇 大阪 Metro <span>▼</span></div><div class="accordion-content">
             <div class="link-group">
                 <a href="https://metronine.osaka/tw/line-departure/" target="_blank" class="transport-btn btn-airport">🕘 首/末班車</a>
                 <a href="https://metronine.osaka/tw/fullpage-course/" target="_blank" class="transport-btn btn-routemap">🗺️ 路線圖</a>
             </div>
-            <p>市區核心旅遊必備，御堂筋線可直達梅田、難波、天王寺。</p>
+            <p>市區核心，御堂筋線可直通各主要景點。</p>
             <div class="metro-embed-container"><iframe src="https://metronine.osaka/tw/fullpage-course/"></iframe></div>
         </div></div>
-
-        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🚆 JR 西日本 (跨城/HARUKA) <span>▼</span></div><div class="accordion-content">
+        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🚆 JR 西日本 <span>▼</span></div><div class="accordion-content">
             <div class="link-group"><a href="https://www.westjr.co.jp/global/tc/timetable/" target="_blank" class="transport-btn btn-timetable">🕒 時刻表</a></div>
-            <p>搭乘機場快線 HARUKA 前往京都或跨城市長途移動首選。</p>
+            <p>前往京都或跨城市長途移動首選。</p>
         </div></div>
-
-        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🚃 阪急電鐵 (京都/神戶) <span>▼</span></div><div class="accordion-content">
+        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🚃 阪急電鐵 <span>▼</span></div><div class="accordion-content">
             <div class="link-group"><a href="https://rail.hankyu-railway.co.jp/station/" target="_blank" class="transport-btn btn-timetable">🕒 時刻表</a></div>
-            <p>從梅田（大阪中心）前往京都河原町或嵐山最划算的鐵路。</p>
+            <p>梅田前往京都河原町、嵐山最划算。</p>
         </div></div>
-
-        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🍵 京阪電車 (京都觀光) <span>▼</span></div><div class="accordion-content">
+        <div class="transport-accordion"><div class="accordion-header" onclick="toggleAcc(this)">🍵 京阪電車 <span>▼</span></div><div class="accordion-content">
             <div class="link-group"><a href="https://www.keihan.co.jp/travel/tw/trains/timetable.html" target="_blank" class="transport-btn btn-timetable">🕒 時刻表</a></div>
-            <p>前往京都伏見稻荷大社、清水寺、祇園最方便的觀光路線。</p>
+            <p>前往伏見稻荷、祇園、清水寺最方便。</p>
         </div></div>
     </div>
 
@@ -349,6 +338,10 @@
             if(src==='JPY') twd.value = jpy.value ? (parseFloat(jpy.value) * r).toFixed(0) : "";
             else jpy.value = twd.value ? (parseFloat(twd.value) / r).toFixed(0) : "";
         }
+
+        function handleSearch(event, inputId) { if (event.key === "Enter") { if (inputId === 'homeSearch') homeSearchJump(); else mapsJump(); } }
+        function homeSearchJump() { const q = document.getElementById('homeSearch').value; if(q) window.open(`https://www.google.com/maps/search/${encodeURIComponent(q)}`, '_blank'); }
+        function mapsJump() { const q = document.getElementById('mapSearch').value; if(q) window.open(`https://www.google.com/maps/search/${encodeURIComponent(q)}`, '_blank'); }
 
         function addExpenseHome(b) {
             const item = document.getElementById('homeExpItem').value, amt = document.getElementById('homeExpAmount').value, payer = document.getElementById('homeExpPayer').value;
@@ -398,9 +391,6 @@
             document.getElementById('currentDate').innerText = new Date().toLocaleDateString('zh-TW', { month: 'long', day: 'numeric', weekday: 'long' });
             fetchWeather();
         };
-        function mapsJump() { const q = document.getElementById('mapSearch').value; if(q) window.open(`https://www.google.com/maps/search/${encodeURIComponent(q)}`, '_blank'); }
-        function homeSearchJump() { const q = document.getElementById('homeSearch').value; if(q) window.open(`https://www.google.com/maps/search/${encodeURIComponent(q)}`, '_blank'); }
     </script>
 </body>
 </html>
-
